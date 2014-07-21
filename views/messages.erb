@@ -1,0 +1,53 @@
+<h2> Welcome! </h2>
+
+<p>We show totally accurate lists of continents and countries!!</p>
+
+<form action="/messages" method="post">
+  Name <input type="text" name="username"><br><br>
+  Message <input type="text" name="message"><br><br>
+  <button id="submit_button" type="submit">Add Message</button>
+</form>
+<br><br>
+
+<% if session[:msg_id] %>
+
+  <table class="new_table" border="1">
+    <tr>
+      <th>Name</th>
+      <th>Message</th>
+    </tr>
+    <tr>
+      <% messages.each do |user| %>
+        <% if user["id"] == session[:msg_id] %>
+          <td>
+            <%= user["username"] %>
+          </td>
+          <td>
+            <%= user["messages"] %>
+          </td>
+        <% end %>
+        </tr>
+      <% end %>
+      </table>
+
+<% else %>
+
+  <table class="new_table" border="1">
+    <tr>
+      <th>Name</th>
+      <th>Message</th>
+    </tr>
+    <tr>
+      <% messages.each do |user| %>
+        <td>
+          <%= user["username"] %>
+        </td>
+        <td>
+          <%= user["messages"] %>
+        </td>
+        </tr>
+      <% end %>
+      </table>
+
+
+<% end %>
